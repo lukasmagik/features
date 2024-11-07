@@ -1,0 +1,59 @@
+name: Validate and Publish Dev Container Features
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main  # Adjust the branch as needed
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: "Validate devcontainer-feature.json files"
+        uses: devcontainers/action@v1
+        with:
+          validate-only: "true"
+          base-path-to-features: "./src"
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: validate
+    if: success() && ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: "Publish Features"
+        uses: devcontainers/action@v1.4.3
+        with:
+          publish-features: "true"
+          base-path-to-features: "./src"
+          generate-docs: "true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create PR for Documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          echo "Start."
+          # Configure git and Push updates
+          git config --global user.email github-actions[bot]@users.noreply.github.com
+          git config --global user.name github-actions[bot]
+          git config pull.rebase false
+          branch=automated-documentation-update-$GITHUB_RUN_ID
+          git checkout -b $branch
+          message='Automated documentation update'
+          # Add / update and commit
+          git add */**/README.md
+          git commit -m 'Automated documentation update [skip ci]' || export NO_UPDATES=true
+          # Push
+          if [ "$NO_UPDATES" != "true" ] ; then
+              git push origin "$branch"
+              gh pr create --title "$message" --body "$message"
+          fi
