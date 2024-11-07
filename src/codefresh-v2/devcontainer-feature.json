@@ -1,18 +1,21 @@
 {
   "name": "Codefresh CLI V1 (GitOps)",
-  "id": "cf_v2",
+  "id": "codefresh-v2",
   "version": "1.0.0",
   "description": "Installed the Codefresh CLI V2 (GitOps). AMD64 Only",
   "options": {
-      "CLI_VERSION": {
-          "type": "string",
-          "proposals": [
-              "latest",
-              "v0.1.67",
-              "v0.1.63"
-          ],
-          "default": "latest",
-          "description": "Provide the version of the CLI you want to install. default is latest"
-      }
-  }
+    "CLI_VERSION": {
+      "type": "string",
+      "proposals": [
+        "latest",
+        "v0.1.67",
+        "v0.1.63"
+      ],
+      "default": "latest",
+      "description": "Provide the version of the CLI you want to install. default is latest"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
 }

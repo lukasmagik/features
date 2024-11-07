@@ -1,18 +1,21 @@
 {
   "name": "Codefresh CLI V1 (Pipelines)",
-  "id": "cf_v1",
+  "id": "codefresh-v1",
   "version": "1.0.0",
   "description": "Installed the Codefresh CLI V1 (Pipelines). AMD64 Only",
   "options": {
-      "CLI_VERSION": {
-          "type": "string",
-          "proposals": [
-              "latest",
-              "v0.87.6",
-              "v0.87.4"
-          ],
-          "default": "latest",
-          "description": "Provide the version of the CLI you want to install. default is latest"
-      }
-  }
+    "CLI_VERSION": {
+      "type": "string",
+      "proposals": [
+        "latest",
+        "v0.87.6",
+        "v0.87.4"
+      ],
+      "default": "latest",
+      "description": "Provide the version of the CLI you want to install. default is latest"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
 }
