@@ -1,15 +1,15 @@
 {
-  "name": "Codefresh CLI V1 (GitOps)",
-  "id": "codefresh-v2",
+  "name": "Install int128/kubelogin",
+  "id": "kubelogin",
   "version": "1.0.0",
-  "description": "Installed the Codefresh CLI V2 (GitOps). AMD64 Only",
+  "description": "Installs kubelogin to be used with authentication to Kubernetes clusters. AMD64 Only",
   "options": {
-    "CLI_VERSION": {
+    "VERSION": {
       "type": "string",
       "proposals": [
         "latest",
-        "v0.1.67",
-        "v0.1.63"
+        "v1.31.0",
+        "v1.29.0"
       ],
       "default": "latest",
       "description": "Provide the version of the CLI you want to install. default is latest"

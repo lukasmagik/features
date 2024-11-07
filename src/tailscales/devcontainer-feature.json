@@ -1,0 +1,10 @@
+{
+  "name": "Install Tailscales",
+  "id": "tailscales",
+  "version": "1.0.0",
+  "description": "Installs tailscales for VPN access. AMD64 Only",
+  "options": {},
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}
