@@ -1,0 +1,21 @@
+{
+  "name": "Install int128/kubelogin",
+  "id": "kubelogin",
+  "version": "1.0.0",
+  "description": "Installs kubelogin to be used with authentication to Kubernetes clusters. AMD64 Only",
+  "options": {
+    "VERSION": {
+      "type": "string",
+      "proposals": [
+        "latest",
+        "v1.31.0",
+        "v1.29.0"
+      ],
+      "default": "latest",
+      "description": "Provide the version of the CLI you want to install. default is latest"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}
